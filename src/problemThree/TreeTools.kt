@@ -1,18 +1,18 @@
 package problemThree
 
 import problemThree.Constants.NULL_NODE
-import problemThree.Constants.SEPERATOR
+import problemThree.Constants.SEPARATOR
 import java.util.*
 
 object Constants {
-    const val SEPERATOR = " "
+    const val SEPARATOR = " "
     const val NULL_NODE = "#"
 }
 
 // deserialize from a string
 fun deserialize(text: String): node<String>? {
     return if (text.isNotEmpty()) {
-        parseString(StringTokenizer(text, SEPERATOR))
+        parseString(StringTokenizer(text, SEPARATOR))
     } else {
         null
     }
@@ -30,7 +30,7 @@ private fun parseString(values: StringTokenizer): node<String>? {
         if (value == NULL_NODE) {
             null
         } else {
-            val node = node<String>(value, null, null)
+            val node = node(value, null, null)
             node.addLeft(parseString(values))
             node.addRight(parseString(values))
         }

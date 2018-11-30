@@ -8,17 +8,17 @@ class MultiplyArrayValues {
     // [120, 60, 40, 30, 24].
     // If our input was [3, 2, 1], the expected output would be [2, 3, 6].
     fun multiply(array: List<Int>): List<Int> {
-        val output = mutableListOf<Int>()
-        for ((idx1, _) in array.withIndex()) {
-            var tmp = 1
-            for ((idx2, v) in array.withIndex()) {
-                if (idx1 == idx2) continue
+        return mutableListOf<Int>().apply {
+            for ((idx1, _) in array.withIndex()) {
+                var tmp = 1
+                for ((idx2, v) in array.withIndex()) {
+                    if (idx1 == idx2) continue
 
-                tmp *= v
+                    tmp *= v
+                }
+                add(tmp)
             }
-            output.add(tmp)
         }
-        return output
     }
 
     // optimal solution.
@@ -39,10 +39,10 @@ class MultiplyArrayValues {
             tmp
         }.reversed()
 
-        val product = mutableListOf<Int>()
-        for (i in 0 until productAbove.size) {
-            product.add(productAbove[i] * productBelow[i])
+        return mutableListOf<Int>().apply {
+            for (i in 0 until productAbove.size) {
+                add(productAbove[i] * productBelow[i])
+            }
         }
-        return product
     }
 }

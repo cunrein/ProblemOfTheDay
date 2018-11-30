@@ -1,7 +1,7 @@
 package problemThree
 
 import problemThree.Constants.NULL_NODE
-import problemThree.Constants.SEPERATOR
+import problemThree.Constants.SEPARATOR
 
 data class node<T>(
     var value: T?,
@@ -26,11 +26,11 @@ data class node<T>(
             if (node != null) {
                 append(infixTraversal(node.leftNode))
                 append(node.value)
-                append(SEPERATOR)
+                append(SEPARATOR)
                 append(infixTraversal(node.rightNode))
             } else {
                 append(NULL_NODE)
-                append(SEPERATOR)
+                append(SEPARATOR)
             }
         }.toString()
     }
@@ -39,12 +39,12 @@ data class node<T>(
         return StringBuilder().apply {
             if (node != null) {
                 append(node.value)
-                append(SEPERATOR)
+                append(SEPARATOR)
                 append(prefixTraversal(node.leftNode))
                 append(prefixTraversal(node.rightNode))
             } else {
                 append(NULL_NODE)
-                append(SEPERATOR)
+                append(SEPARATOR)
             }
         }.toString()
     }
@@ -55,10 +55,10 @@ data class node<T>(
                 append(postfixTraversal(node.leftNode))
                 append(postfixTraversal(node.rightNode))
                 append(node.value)
-                append(SEPERATOR)
+                append(SEPARATOR)
             } else {
                 append(NULL_NODE)
-                append(SEPERATOR)
+                append(SEPARATOR)
             }
         }.toString()
     }
