@@ -1,3 +1,6 @@
+import problemFive.car
+import problemFive.cdr
+import problemFive.cons
 import problemFour.findLowestMissingPositiveInteger
 import problemOne.DoesListContainSum
 import problemThree.deserialize
@@ -42,6 +45,9 @@ fun main(args: Array<String>) {
     println(findLowestMissingPositiveInteger(intArrayOf(1, 2, 0)))
     println(findLowestMissingPositiveInteger(intArrayOf(4, 7, 0, -2, 3, 4, 1, 3, 6, 2)))
     println(findLowestMissingPositiveInteger(intArrayOf(10, 9, 9, 9, 9, 9, 0)))
+
+    println(car(cons(3, 4)))
+    println(cdr(cons(3, 4)))
 }
 
 fun buildTree(): node<String>? {
