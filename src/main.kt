@@ -1,8 +1,10 @@
+
 import problemFive.car
 import problemFive.cdr
 import problemFive.cons
 import problemFour.findLowestMissingPositiveInteger
 import problemOne.DoesListContainSum
+import problemSeven.countNumberDecodings
 import problemThree.deserialize
 import problemThree.node
 import problemThree.serialize
@@ -48,6 +50,11 @@ fun main(args: Array<String>) {
 
     println(car(cons(3, 4)))
     println(cdr(cons(3, 4)))
+
+    var message = "111"
+    println(countNumberDecodings(message.toCharArray(), message.length))
+    message = "129"
+    println(countNumberDecodings(message.toCharArray(), message.length))
 }
 
 fun buildTree(): node<String>? {
