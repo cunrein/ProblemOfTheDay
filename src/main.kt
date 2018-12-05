@@ -1,4 +1,4 @@
-
+import problemEight.countUniversalTrees
 import problemFive.car
 import problemFive.cdr
 import problemFive.cons
@@ -55,6 +55,13 @@ fun main(args: Array<String>) {
     println(countNumberDecodings(message.toCharArray(), message.length))
     message = "129"
     println(countNumberDecodings(message.toCharArray(), message.length))
+
+    var intTree = buildTree2()
+    println(intTree)
+    println(node.countUniversalTrees(intTree))
+    intTree = buildTree3()
+    println(intTree)
+    println(node.countUniversalTrees(intTree))
 }
 
 fun buildTree(): node<String>? {
@@ -66,4 +73,34 @@ fun buildTree(): node<String>? {
     a.addNodes(b, c)
     c.addNodes(d, e)
     return a
+}
+
+fun buildTree2(): node<Int> {
+    return node(
+        0, node(1, null, null),
+        node(
+            0,
+            node(
+                1,
+                node(1, null, null),
+                node(1, null, null)
+            ),
+            node(0, null, null)
+        )
+    )
+}
+
+fun buildTree3(): node<Int> {
+    return node(
+        1, node(1, null, null),
+        node(
+            1,
+            node(
+                1,
+                node(1, null, null),
+                node(1, null, null)
+            ),
+            node(1, null, null)
+        )
+    )
 }

@@ -18,8 +18,8 @@ fun deserialize(text: String): node<String>? {
     }
 }
 
-fun serialize(node: node<String>?): String {
-    return node!!.prefixTraversal(node)
+fun serialize(n: node<String>?): String {
+    return node.prefixTraversal(n)
 }
 
 private fun parseString(values: StringTokenizer): node<String>? {
