@@ -1,3 +1,5 @@
+import adventOfCode.createDataDayThree
+import adventOfCode.findNonOverlapingClaim
 import problemEight.countUniversalTrees
 import problemFive.car
 import problemFive.cdr
@@ -9,8 +11,38 @@ import problemThree.deserialize
 import problemThree.node
 import problemThree.serialize
 import problemTwo.MultiplyArrayValues
+import java.math.BigInteger
 
 fun main(args: Array<String>) {
+    //problemOftheDay()
+    advent()
+}
+
+fun advent() {
+//    println(freqAdjust(loadDataFromFile("./adventOfCode/day1data.dat")))
+//    println(repeatedFreq(loadDataFromFile("./adventOfCode/day1data.dat")))
+//    //println(repeatedFreq(createList()))
+//    val map = mapOf<>()
+//    println(stringDiff("bqlpzruexkszyahnamgjdctvfs",
+//    "bqlporuexkwyyahnbmgjdctvfb"))
+//    println(findMissing())
+//    val claim = createClaim("#1 @ 108,350: 22x29")
+//    println("${claim.name}, ${claim.xStart}, ${claim.yStart}, ${claim.xEnd}, ${claim.yEnd}")
+//    println(findOverlap(createDataDayThree()))
+    println(findNonOverlapingClaim(createDataDayThree()))
+}
+
+fun createList(): List<BigInteger> {
+    return listOf<BigInteger>(
+        BigInteger.valueOf(1),
+        BigInteger.valueOf(-2),
+        BigInteger.valueOf(3),
+        BigInteger.valueOf(1),
+        BigInteger.valueOf(3)
+    )
+}
+
+fun problemOftheDay() {
     val doesListContainSum = DoesListContainSum()
     val multiplyArrayValues = MultiplyArrayValues()
     var list = listOf(10, 15, 3, 7, 2, 14)
