@@ -1,5 +1,4 @@
-import adventOfCode.createDataDayThree
-import adventOfCode.findNonOverlapingClaim
+import adventOfCode.*
 import problemEight.countUniversalTrees
 import problemFive.car
 import problemFive.cdr
@@ -13,11 +12,6 @@ import problemThree.serialize
 import problemTwo.MultiplyArrayValues
 import java.math.BigInteger
 
-fun main(args: Array<String>) {
-    //problemOftheDay()
-    advent()
-}
-
 fun advent() {
 //    println(freqAdjust(loadDataFromFile("./adventOfCode/day1data.dat")))
 //    println(repeatedFreq(loadDataFromFile("./adventOfCode/day1data.dat")))
@@ -29,7 +23,19 @@ fun advent() {
 //    val claim = createClaim("#1 @ 108,350: 22x29")
 //    println("${claim.name}, ${claim.xStart}, ${claim.yStart}, ${claim.xEnd}, ${claim.yEnd}")
 //    println(findOverlap(createDataDayThree()))
-    println(findNonOverlapingClaim(createDataDayThree()))
+//    println(findNonOverlapingClaim(createDataDayThree()))
+//    println(findMinutesAsleep(parseData(dayFourData)).map { Pair(it.key, it.value.max()) }.maxBy { it.second!! })
+//    println(getSecondResult(findMinutesAsleep(parseData(dayFourData))))
+    println(destructurePolymer(day5TestData))
+    println(day5TestData2)
+    println(destructurePolymer(day5TestData2))
+    println(destructurePolymer(day5Data).length)
+    println(findBestReaction(day5Data))
+}
+
+fun main(args: Array<String>) {
+    //problemOftheDay()
+    advent()
 }
 
 fun createList(): List<BigInteger> {
