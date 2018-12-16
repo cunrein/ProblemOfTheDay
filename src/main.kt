@@ -26,11 +26,14 @@ fun advent() {
 //    println(findNonOverlapingClaim(createDataDayThree()))
 //    println(findMinutesAsleep(parseData(dayFourData)).map { Pair(it.key, it.value.max()) }.maxBy { it.second!! })
 //    println(getSecondResult(findMinutesAsleep(parseData(dayFourData))))
-    println(destructurePolymer(day5TestData))
-    println(day5TestData2)
-    println(destructurePolymer(day5TestData2))
-    println(destructurePolymer(day5Data).length)
-    println(findBestReaction(day5Data))
+//    println(destructurePolymer(day5TestData))
+//    println(day5TestData2)
+//    println(destructurePolymer(day5TestData2))
+//    println(destructurePolymer(day5Data).length)
+//    println(findBestReaction(day5Data))
+    val graph = createGraph(day7Data)
+    println(graph)
+    println(findPath(graph))
 }
 
 fun main(args: Array<String>) {
