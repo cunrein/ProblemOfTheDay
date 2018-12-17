@@ -1,4 +1,8 @@
-import adventOfCode.*
+
+import adventOfCode.createTree
+import adventOfCode.day8Data
+import adventOfCode.getKey
+import adventOfCode.nodeValue
 import problemEight.countUniversalTrees
 import problemFive.car
 import problemFive.cdr
@@ -31,9 +35,12 @@ fun advent() {
 //    println(destructurePolymer(day5TestData2))
 //    println(destructurePolymer(day5Data).length)
 //    println(findBestReaction(day5Data))
-    val graph = createGraph(day7Data)
-    println(graph)
-    println(findPath(graph))
+//    val graph = createGraph(day7Data)
+//    println(graph)
+//    println(findPath(graph))
+    val tree = createTree(day8Data)
+    println(getKey(tree))
+    println(nodeValue(tree))
 }
 
 fun main(args: Array<String>) {
