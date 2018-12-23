@@ -1,8 +1,5 @@
 
-import adventOfCode.createTree
-import adventOfCode.day8Data
-import adventOfCode.getKey
-import adventOfCode.nodeValue
+import adventOfCode.MarbleGame
 import problemEight.countUniversalTrees
 import problemFive.car
 import problemFive.cdr
@@ -38,9 +35,10 @@ fun advent() {
 //    val graph = createGraph(day7Data)
 //    println(graph)
 //    println(findPath(graph))
-    val tree = createTree(day8Data)
-    println(getKey(tree))
-    println(nodeValue(tree))
+//    val tree = createTree(day8Data)
+//    println(getKey(tree))
+//    println(nodeValue(tree))
+    println(MarbleGame(403, 7192000.toBigInteger()).run())
 }
 
 fun main(args: Array<String>) {
