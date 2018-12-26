@@ -1,4 +1,3 @@
-
 import adventOfCode.MarbleGame
 import problemEight.countUniversalTrees
 import problemFive.car
@@ -38,7 +37,9 @@ fun advent() {
 //    val tree = createTree(day8Data)
 //    println(getKey(tree))
 //    println(nodeValue(tree))
-    println(MarbleGame(403, 7192000.toBigInteger()).run())
+    println(MarbleGame(403, 71920).run())
+    println(MarbleGame(403, 7192000).run())
+
 }
 
 fun main(args: Array<String>) {
