@@ -6,6 +6,7 @@ import problemFive.cons
 import problemFour.findLowestMissingPositiveInteger
 import problemOne.DoesListContainSum
 import problemSeven.countNumberDecodings
+import problemThirtyFive.partition
 import problemThree.deserialize
 import problemThree.node
 import problemThree.serialize
@@ -44,7 +45,8 @@ fun advent() {
 
 fun main(args: Array<String>) {
     //problemOftheDay()
-    advent()
+    //advent()
+    println(partition(charArrayOf('G', 'B', 'R', 'R', 'B', 'R', 'G')))
 }
 
 fun createList(): List<BigInteger> {
