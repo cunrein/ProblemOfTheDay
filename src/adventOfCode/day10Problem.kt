@@ -1,64 +1,120 @@
 package adventOfCode
 
-import java.lang.Math.abs
-
 data class Position(var x: Int, var y: Int)
 data class Velocity(val x: Int, val y: Int)
 data class Particle(val position: Position, val velocity: Velocity)
 
-fun day10ParseData(data: List<String>): List<Particle> {
+fun day10ParseData(data: List<String>): Array<Particle> {
     return data.map {
         val pos = it.substring(10, 24).split(",")
         val vel = it.substring(36, 42).split(",")
         Particle(Position(pos[0].trim().toInt(), pos[1].trim().toInt()),
             Velocity(vel[0].trim().toInt(), vel[1].trim().toInt()))
-    }
+    }.toTypedArray()
 }
 
-fun createGrid(particles: List<Particle>): Array<Array<String>> {
+fun day10ParseTestData(data: List<String>): Array<Particle> {
+    return data.map {
+        val pos = it.substring(10, 16).split(",")
+        val vel = it.substring(28, 34).split(",")
+        Particle(
+            Position(pos[0].trim().toInt(), pos[1].trim().toInt()),
+            Velocity(vel[0].trim().toInt(), vel[1].trim().toInt())
+        )
+    }.toTypedArray()
+}
+
+fun createGrid(particles: Array<Particle>): String {
     val xMax = particles.maxBy { it.position.x }!!.position.x
     val yMax = particles.maxBy { it.position.y }!!.position.y
     val xMin = particles.minBy { it.position.x }!!.position.x
     val yMin = particles.minBy { it.position.y }!!.position.y
 
-    var grid = arrayOf<Array<String>>()
+    val out = StringBuilder()
 
-    val xSize = xMax + abs(xMin)
-    val ySize = yMax + abs(yMin)
-    for (i in 0..xSize) {
-        var array = arrayOf<String>()
-        for (j in 0..ySize) {
-            array += "."
+    for (x in xMin..xMax) {
+        for (y in yMin..yMax) {
+            if (particles.filter { it.position == Position(x, y) }.any()) {
+                out.append('#')
+            } else {
+                out.append(' ')
+            }
         }
-        grid += array
+        out.append('\n')
     }
-    particles.forEach {
-        grid[it.position.x + abs(xMin)][it.position.y + abs(yMin)] = "#"
-    }
-    return grid
+    return out.toString()
 }
 
-fun timeStep(particles: List<Particle>): List<Particle> {
+fun timeStepBack(particles: Array<Particle>): Array<Particle> {
+    return particles.map {
+        val newx = it.position.x - it.velocity.x
+        val newy = it.position.y - it.velocity.y
+        Particle(
+            Position(newx, newy),
+            Velocity(it.velocity.x, it.velocity.y)
+        )
+    }.toTypedArray()
+}
+
+fun timeStep(particles: Array<Particle>): Array<Particle> {
     return particles.map {
         val newx = it.position.x + it.velocity.x
         val newy = it.position.y + it.velocity.y
         Particle(Position( newx, newy),
             Velocity(it.velocity.x, it.velocity.y))
-    }
+    }.toTypedArray()
 }
 
 fun main(args: Array<String>) {
+//    var positions = day10ParseTestData(day10TestData)
     var positions = day10ParseData(day10Data)
-    for (i in 1 .. 10) {
-        println(i)
-        val grid = createGrid(positions)
-        grid.forEach {
-            it.forEach { l -> print(l) }
-            println()
+    var i = 0
+
+    var distance = Long.MAX_VALUE
+    while (true) {
+        i++
+        val xMax = positions.maxBy { it.position.x }!!.position.x.toLong()
+        val yMax = positions.maxBy { it.position.y }!!.position.y.toLong()
+        val xMin = positions.minBy { it.position.x }!!.position.x.toLong()
+        val yMin = positions.minBy { it.position.y }!!.position.y.toLong()
+
+        if (((yMax - yMin) * (xMax - xMin)) > distance) {
+            break
         }
-        println()
+
+        distance = (yMax - yMin) * (xMax - xMin)
+
         positions = timeStep(positions)
     }
+    println(i - 2)
+    val grid = createGrid(timeStepBack(positions))
+//        javax.imageio.ImageIO.write(grid, "PNG", File("images/image$i.png"))
+
+    println(grid)
+    println(timeToView())
+}
+
+fun timeToView(): Long {
+    var particles = day10ParseData(day10Data)
+    var i = -1L
+    var distance = Long.MAX_VALUE
+    while (true) {
+
+        val xMax = particles.maxBy { it.position.x }!!.position.x.toLong()
+        val yMax = particles.maxBy { it.position.y }!!.position.y.toLong()
+        val xMin = particles.minBy { it.position.x }!!.position.x.toLong()
+        val yMin = particles.minBy { it.position.y }!!.position.y.toLong()
+
+        if (((yMax - yMin) * (xMax - xMin)) > distance) {
+            break
+        }
+
+        distance = (yMax - yMin) * (xMax - xMin)
+
+        particles = timeStep(particles)
+        i++
+    }
+    return i
 }
 
 val day10TestData = listOf("position=< 9,  1> velocity=< 0,  2>",
