@@ -1,3 +1,4 @@
+
 import adventOfCode.MarbleGame
 import problemEight.countUniversalTrees
 import problemFive.car
@@ -6,7 +7,6 @@ import problemFive.cons
 import problemFour.findLowestMissingPositiveInteger
 import problemOne.DoesListContainSum
 import problemSeven.countNumberDecodings
-import problemThirtyFive.partition
 import problemThree.deserialize
 import problemThree.node
 import problemThree.serialize
@@ -38,15 +38,15 @@ fun advent() {
 //    val tree = createTree(day8Data)
 //    println(getKey(tree))
 //    println(nodeValue(tree))
-    println(MarbleGame(403, 71920).run())
-    println(MarbleGame(403, 7192000).run())
+    println(MarbleGame(10, 1618).run())
+//    println(MarbleGame(403, 7192000).runItr())
 
 }
 
 fun main(args: Array<String>) {
     //problemOftheDay()
-    //advent()
-    println(partition(charArrayOf('G', 'B', 'R', 'R', 'B', 'R', 'G')))
+    advent()
+    //println(partition(charArrayOf('G', 'B', 'R', 'R', 'B', 'R', 'G')))
 }
 
 fun createList(): List<BigInteger> {

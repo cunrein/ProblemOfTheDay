@@ -1,5 +1,7 @@
 package adventOfCode
 
+import java.util.*
+
 class MarbleGame(private val numPlayers: Int, private val marbles: Int) {
     private val players = HashMap<Int, Double>(numPlayers)
 
@@ -10,7 +12,8 @@ class MarbleGame(private val numPlayers: Int, private val marbles: Int) {
     // return the score of winner.
     fun run(): Double {
         // optimization - init the circle to be the size of the number of marbles to prevent a resize.
-        val circle = mutableListOf(0)
+        val circle = LinkedList<Int>()
+        circle.addFirst(0)
         var current = 0
         var player = 1
         var i = 1
@@ -28,7 +31,7 @@ class MarbleGame(private val numPlayers: Int, private val marbles: Int) {
         return players.maxBy { it.value }!!.value
     }
 
-    private fun placeMarble(marble: Int, idxCurrent: Int, player: Int, circle: MutableList<Int>): Int {
+    private fun placeMarble(marble: Int, idxCurrent: Int, player: Int, circle: LinkedList<Int>): Int {
         if(marble % 23 == 0) {
             // score
             var score = players[player]!!.plus(marble)
@@ -41,13 +44,13 @@ class MarbleGame(private val numPlayers: Int, private val marbles: Int) {
             // place marble
             if(idxCurrent + 2 == circle.size) {
                 // place at end
-                circle.add(marble)
+                circle.addLast(marble)
             } else if(idxCurrent + 2 > circle.size) {
-                circle.add(1, marble)
+                // place at the beginning
+                circle.addFirst(marble)
                 return 1
             } else {
                 // place at index + 2
-                // seems redundant not sure if this is required.
                 circle.add(idxCurrent + 2, marble)
             }
         }
@@ -56,5 +59,45 @@ class MarbleGame(private val numPlayers: Int, private val marbles: Int) {
 
     private fun findCounterClockwiseIndex(steps: Int, idx: Int, circle: MutableList<Int>): Int {
         return if (idx - steps >= 0) {idx - steps} else { circle.size + (idx - steps)}
+    }
+
+    fun runItr(): Double {
+        val circle = LinkedList<Int>()
+        circle.addFirst(0)
+        var current = circle.listIterator()
+        var player = 1
+        var i = 1
+        while (i < marbles) {
+            if (i % 23 == 0) {
+                // score
+                var score = players[player]!!.plus(i)
+                // take marble, move left 7 places
+                var value = -1
+                for (j in 0..7) {
+                    if (!current.hasPrevious()) {
+                        current = circle.listIterator(circle.lastIndex)
+                    }
+                    value = current.previous()
+                }
+                current.remove()
+                score += value
+                players[player] = score
+            } else {
+                if (!current.hasNext()) {
+                    current = circle.listIterator()
+                }
+                current.next()
+                current.add(i)
+            }
+
+            if (player + 1 > numPlayers) {
+                player = 0
+            }
+            player++
+            i++
+//            if(i % oneHundredth == 0) {print("#")}
+        }
+        println()
+        return players.maxBy { it.value }!!.value
     }
 }
