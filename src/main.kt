@@ -1,16 +1,16 @@
 
-import adventOfCode.MarbleGame
-import problemEight.countUniversalTrees
-import problemFive.car
-import problemFive.cdr
-import problemFive.cons
-import problemFour.findLowestMissingPositiveInteger
-import problemOne.DoesListContainSum
-import problemSeven.countNumberDecodings
-import problemThree.deserialize
-import problemThree.node
-import problemThree.serialize
-import problemTwo.MultiplyArrayValues
+import adventOfCode.Day14
+import problemOfTheDay.problemEight.countUniversalTrees
+import problemOfTheDay.problemFive.car
+import problemOfTheDay.problemFive.cdr
+import problemOfTheDay.problemFive.cons
+import problemOfTheDay.problemFour.findLowestMissingPositiveInteger
+import problemOfTheDay.problemOne.DoesListContainSum
+import problemOfTheDay.problemSeven.countNumberDecodings
+import problemOfTheDay.problemThree.deserialize
+import problemOfTheDay.problemThree.node
+import problemOfTheDay.problemThree.serialize
+import problemOfTheDay.problemTwo.MultiplyArrayValues
 import java.math.BigInteger
 
 fun advent() {
@@ -38,8 +38,9 @@ fun advent() {
 //    val tree = createTree(day8Data)
 //    println(getKey(tree))
 //    println(nodeValue(tree))
-    println(MarbleGame(10, 1618).run())
+//    println(MarbleGame(10, 1618).run())
 //    println(MarbleGame(403, 7192000).runItr())
+    println(Day14("652601").solvePart2())
 
 }
 

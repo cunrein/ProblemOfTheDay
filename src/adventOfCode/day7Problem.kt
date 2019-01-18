@@ -1,7 +1,5 @@
 package adventOfCode
 
-import java.lang.StringBuilder
-
 class CharGraph {
     var grid = arrayOf<Array<Int>>()
     var charMap = mutableMapOf<Char, Int>()
@@ -23,6 +21,7 @@ class CharGraph {
     fun addEdge(sourceVertex: Char, destinationVertex: Char) {
         // Add edge to source vertex / node.
         grid[charMap[sourceVertex]!!][charMap[destinationVertex]!!] = 1
+        //grid[charMap[destinationVertex]!!][charMap[sourceVertex]!!] = 1
     }
 
     override fun toString(): String = StringBuffer().apply {
@@ -52,6 +51,21 @@ fun createGraph(data: List<String>): CharGraph {
 }
 
 fun findPath(graph: CharGraph): String {
+    val lsts = mutableSetOf<String>()
+    var nodes = setOf<String>()
+    for (i in 'A'..'Z') {
+        val lstd = mutableSetOf<String>()
+        for (j in 'A'..'Z') {
+            if(graph.grid[graph.charMap[i]!!][graph.charMap[j]!!] == 1)
+                lstd.add("$j")
+        }
+        if (lstd.isNotEmpty()) {
+            lsts.add("$i")
+            nodes = nodes.union(lsts.union(lstd))
+        }
+    }
+
+    println(nodes)
     // find start nodes
     val lst = graph.charMap.filter {
         graph.grid[it.value].sum() == 0
