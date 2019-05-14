@@ -1,6 +1,7 @@
 # Created by .ignore support plugin (hsz.mobi)
-### Example user template template
-### Example user template
+# Mac junk
+.DS_Store
+/images
 
 # IntelliJ project files
 .idea
