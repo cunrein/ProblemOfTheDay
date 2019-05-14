@@ -25,7 +25,7 @@ class Queue<T> {
 
 }
 
-fun main(args: Array<String>) {
+fun main() {
     val q = Queue<Int>()
 
     for (i in 1 .. 20)
