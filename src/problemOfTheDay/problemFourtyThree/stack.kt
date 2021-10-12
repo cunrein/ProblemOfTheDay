@@ -19,6 +19,6 @@ data class Stack<T : Comparable<T>>(val el: T? = null) {
     }
 
     fun max(): T {
-        return list.max() ?: throw RuntimeException("The list is empty")
+        return list.maxOrNull() ?: throw RuntimeException("The list is empty")
     }
 }

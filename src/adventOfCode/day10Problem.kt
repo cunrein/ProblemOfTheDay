@@ -25,10 +25,10 @@ fun day10ParseTestData(data: List<String>): Array<Particle> {
 }
 
 fun createGrid(particles: Array<Particle>): String {
-    val xMax = particles.maxBy { it.position.x }!!.position.x
-    val yMax = particles.maxBy { it.position.y }!!.position.y
-    val xMin = particles.minBy { it.position.x }!!.position.x
-    val yMin = particles.minBy { it.position.y }!!.position.y
+    val xMax = particles.maxByOrNull { it.position.x }!!.position.x
+    val yMax = particles.maxByOrNull { it.position.y }!!.position.y
+    val xMin = particles.minByOrNull { it.position.x }!!.position.x
+    val yMin = particles.minByOrNull { it.position.y }!!.position.y
 
     val out = StringBuilder()
 
@@ -65,7 +65,7 @@ fun timeStep(particles: Array<Particle>): Array<Particle> {
     }.toTypedArray()
 }
 
-fun main(args: Array<String>) {
+fun main() {
 //    var positions = day10ParseTestData(day10TestData)
     var positions = day10ParseData(day10Data)
     var i = 0
@@ -73,10 +73,10 @@ fun main(args: Array<String>) {
     var distance = Long.MAX_VALUE
     while (true) {
         i++
-        val xMax = positions.maxBy { it.position.x }!!.position.x.toLong()
-        val yMax = positions.maxBy { it.position.y }!!.position.y.toLong()
-        val xMin = positions.minBy { it.position.x }!!.position.x.toLong()
-        val yMin = positions.minBy { it.position.y }!!.position.y.toLong()
+        val xMax = positions.maxByOrNull { it.position.x }!!.position.x.toLong()
+        val yMax = positions.maxByOrNull { it.position.y }!!.position.y.toLong()
+        val xMin = positions.minByOrNull { it.position.x }!!.position.x.toLong()
+        val yMin = positions.minByOrNull { it.position.y }!!.position.y.toLong()
 
         if (((yMax - yMin) * (xMax - xMin)) > distance) {
             break
@@ -100,10 +100,10 @@ fun timeToView(): Long {
     var distance = Long.MAX_VALUE
     while (true) {
 
-        val xMax = particles.maxBy { it.position.x }!!.position.x.toLong()
-        val yMax = particles.maxBy { it.position.y }!!.position.y.toLong()
-        val xMin = particles.minBy { it.position.x }!!.position.x.toLong()
-        val yMin = particles.minBy { it.position.y }!!.position.y.toLong()
+        val xMax = particles.maxByOrNull { it.position.x }!!.position.x.toLong()
+        val yMax = particles.maxByOrNull { it.position.y }!!.position.y.toLong()
+        val xMin = particles.minByOrNull { it.position.x }!!.position.x.toLong()
+        val yMin = particles.minByOrNull { it.position.y }!!.position.y.toLong()
 
         if (((yMax - yMin) * (xMax - xMin)) > distance) {
             break

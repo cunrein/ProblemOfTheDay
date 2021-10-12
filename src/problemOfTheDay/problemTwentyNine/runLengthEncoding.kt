@@ -1,6 +1,6 @@
 package problemOfTheDay.problemTwentyNine
 
-import com.google.common.base.Splitter
+//import com.google.common.base.Splitter
 
 // Run-length encoding is a fast and simple method of encoding strings.
 // The basic idea is to represent repeated successive characters as a
@@ -31,16 +31,16 @@ fun decode(str: String): String {
     //bad string
     if (str.length % 2 != 0)
         return ""
-    val pieces = Splitter.fixedLength(2).split(str)
+//    val pieces = Splitter.fixedLength(2).split(str)
     val sb = StringBuilder()
-    for (p in pieces) {
-        val cnt = p[0].toString().toInt()
-        sb.append(p[1].toString().repeat(cnt))
-    }
+//    for (p in pieces) {
+//        val cnt = p[0].toString().toInt()
+//        sb.append(p[1].toString().repeat(cnt))
+//    }
     return sb.toString()
 }
 
-fun main(args: Array<String>) {
+fun main() {
     val en = encode(testDataDay29)
     println(en == "4A3B2C1D2A")
     println(decode(en) == testDataDay29)

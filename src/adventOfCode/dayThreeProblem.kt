@@ -15,8 +15,8 @@ fun createClaim(strClaim: String): Claim {
 fun createClaimCollection(list: List<String>): List<Claim> = list.map { createClaim(it) }
 
 fun findNonOverlapingClaim(claims: List<Claim>): String {
-    val xMax = claims.maxBy { it.xEnd }!!.xEnd
-    val yMax = claims.maxBy { it.yEnd }!!.yEnd
+    val xMax = claims.maxByOrNull { it.xEnd }!!.xEnd
+    val yMax = claims.maxByOrNull { it.yEnd }!!.yEnd
 
     var names = claims.map { it.name }
     var grid = arrayOf<Array<String>>()
@@ -47,10 +47,10 @@ fun findNonOverlapingClaim(claims: List<Claim>): String {
 }
 
 fun findOverlap(claims: List<Claim>): Int {
-    val xMax = claims.maxBy { it.xEnd }!!.xEnd
-    val yMax = claims.maxBy { it.yEnd }!!.yEnd
+    val xMax = claims.maxByOrNull { it.xEnd }!!.xEnd
+    val yMax = claims.maxByOrNull { it.yEnd }!!.yEnd
 
-    var names = setOf(claims.map { it.name })
+    val names = setOf(claims.map { it.name })
     var grid = arrayOf<Array<String>>()
 
     for (i in 0..xMax) {

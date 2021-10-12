@@ -3,21 +3,21 @@ package adventOfCode
 import java.time.LocalDateTime
 
 fun getSecondResult(timesSlept: Map<String, IntArray>): Int {
-    val gaurd = timesSlept.map { Pair(it.key, it.value.max()) }.maxBy { it.second!! }!!.first
-    val min = timesSlept[gaurd]!!.indices.maxBy { timesSlept[gaurd]!![it] } ?: -1
+    val gaurd = timesSlept.map { Pair(it.key, it.value.maxOrNull()) }.maxByOrNull { it.second!! }!!.first
+    val min = timesSlept[gaurd]!!.indices.maxByOrNull { timesSlept[gaurd]!![it] } ?: -1
     return gaurd.toInt() * min
 }
 
 fun getResult(timesSlept: Map<String, IntArray>): Int {
-    val gaurd = timesSlept.map { Pair(it.key, it.value.sum()) }.maxBy { it.second }!!.first
-    val maxIdx = timesSlept[gaurd]!!.indices.maxBy { timesSlept[gaurd]!![it] } ?: -1
+    val gaurd = timesSlept.map { Pair(it.key, it.value.sum()) }.maxByOrNull { it.second }!!.first
+    val maxIdx = timesSlept[gaurd]!!.indices.maxByOrNull { timesSlept[gaurd]!![it] } ?: -1
     return gaurd.toInt() * maxIdx
 }
 
 fun findMinutesAsleep(gaurds: Map<String, MutableMap<String, BooleanArray>>): Map<String, IntArray> {
     val slept = mutableMapOf<String, IntArray>()
     gaurds.forEach {
-        var sleep = IntArray(60)
+        val sleep = IntArray(60)
         it.value.forEach { (_, s) ->
             for ((idx, i) in s.withIndex()) {
                 sleep[idx] += if (i) 1 else 0
@@ -61,7 +61,7 @@ fun parseData(data: List<String>): Map<String, MutableMap<String, BooleanArray>>
                 createDayPair(day, gaurds, key)
                 gaurds[key]!!
             }
-        } else if (fields[3].toLowerCase() == "asleep") {
+        } else if (fields[3].lowercase() == "asleep") {
             start = minute
             isAsleep = true
         } else {

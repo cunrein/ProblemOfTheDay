@@ -28,7 +28,7 @@ class MarbleGame(private val numPlayers: Int, private val marbles: Int) {
             if(i % oneHundredth == 0) {print("#")}
         }
         println()
-        return players.maxBy { it.value }!!.value
+        return players.maxByOrNull { it.value }!!.value
     }
 
     private fun placeMarble(marble: Int, idxCurrent: Int, player: Int, circle: LinkedList<Int>): Int {
@@ -98,6 +98,6 @@ class MarbleGame(private val numPlayers: Int, private val marbles: Int) {
 //            if(i % oneHundredth == 0) {print("#")}
         }
         println()
-        return players.maxBy { it.value }!!.value
+        return players.maxByOrNull { it.value }!!.value
     }
 }
